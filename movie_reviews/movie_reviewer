@@ -1,0 +1,54 @@
+movies = {
+  Memento: 3,
+  Primer: 4,
+  Ishtar: 1
+}
+
+while true
+  puts "Welcome to the movie reviewer, which can ..."
+  puts "-- \"Add\" a new movie and rating"
+  puts "-- \"Delete\" a movie and its rating"
+  puts "-- \"Display\" all movies and their ratings"
+  puts "-- \"Update\" a movie's rating"
+  puts "-- \"Quit\" the reviewer"
+
+  choice = gets.chomp.downcase
+
+  case choice
+  #addition done
+  when 'add'
+    puts "Please enter a title"
+    title = gets.chomp.to_sym
+    if movies[title]
+      puts "That movie is already rated. Please use \"update\" to change rating."
+    else 
+      puts "Please enter a rating for #{title.to_s}"
+      movies[title] = gets.chomp
+    end
+  #deletion done
+  when 'delete'
+    puts "Please enter a title to delete"
+    title = gets.chomp.to_sym
+    unless movies[title]
+      puts "I have no record of that title"
+    else 
+			movies.delete(title)
+      puts "#{title.to_s} deleted"
+    end  
+  #
+  when 'display'
+    puts "Display movie titles and ratings"
+    movies.each { |title, rating| puts "#{title}: #{rating}"}
+  #
+  when 'update'
+    puts "Updated a movie's rating"
+  #
+  when 'quit'
+		puts "Goodbye!"
+    break
+  #
+  else
+    puts "I don't understand that command. Please try again."
+  end
+  puts ""
+end
